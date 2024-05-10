@@ -1,6 +1,6 @@
 resource "aws_launch_template" "projecttemplate" {
   name_prefix   = "projecttemplate-launch-template"
-  image_id      = "ami-07caf09b362be10b8" 
+  image_id      = "ami-04b70fa74e45c3917" 
   instance_type = "t2.large"   
   key_name      = "local"   
 
