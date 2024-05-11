@@ -8,7 +8,7 @@ resource "aws_launch_template" "projecttemplate" {
 
 
 
-resource "aws_autoscaling_group" "example" {
+resource "aws_autoscaling_group" "asg" {
   name = "projecttemplate-asg"
 
   launch_template {
