@@ -1,5 +1,5 @@
 # Create Database Security Group
-resource "aws_security_group" "database-sg" {
+resource "aws_security_group" "projectsec" {
   name        = "Database SG"
   description = "Allow inbound traffic from application layer"
   vpc_id      = aws_vpc.mainvpc.id
