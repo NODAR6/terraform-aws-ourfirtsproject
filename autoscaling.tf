@@ -6,9 +6,9 @@ resource "aws_launch_template" "projecttemplate" {
    user_data = <<-EOF
     #!/bin/bash
    apt update
-apt install apache2 -y
-systemctl start apache2
-systemctl enable apache2
+   apt install apache2 -y
+   systemctl start apache2
+   systemctl enable apache2
     EOF
 }
 }
