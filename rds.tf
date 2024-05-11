@@ -13,34 +13,34 @@
 
 
 # Create DNS records for RDS endpoints
-resource "aws_route53_record" "writer_dns" {
-  zone_id = var.hosted_zone_id
-  name    = "writer.ourproject.link"
-  type    = "CNAME"
-  ttl     = "300"
-  records = [aws_rds_cluster.wordpress_rds_cluster.endpoint]
-}
+# resource "aws_route53_record" "writer_dns" {
+#   zone_id = var.hosted_zone_id
+#   name    = "writer.ourproject.link"
+#   type    = "CNAME"
+#   ttl     = "300"
+#   records = [aws_rds_cluster.wordpress_rds_cluster.endpoint]
+# }
 
-resource "aws_route53_record" "reader1_dns" {
-  zone_id = var.hosted_zone_id
-  name    = "reader1.ourproject.link"
-  type    = "CNAME"
-  ttl     = "300"
-  records = [aws_rds_cluster.wordpress_rds_cluster.reader_endpoint]
-}
+# resource "aws_route53_record" "reader1_dns" {
+#   zone_id = var.hosted_zone_id
+#   name    = "reader1.ourproject.link"
+#   type    = "CNAME"
+#   ttl     = "300"
+#   records = [aws_rds_cluster.wordpress_rds_cluster.reader_endpoint]
+# }
 
-resource "aws_route53_record" "reader2_dns" {
-  zone_id = var.hosted_zone_id
-  name    = "reader2.ourproject.link"
-  type    = "CNAME"
-  ttl     = "300"
-  records = [aws_rds_cluster.wordpress_rds_cluster.reader_endpoint]
-}
+# resource "aws_route53_record" "reader2_dns" {
+#   zone_id = var.hosted_zone_id
+#   name    = "reader2.ourproject.link"
+#   type    = "CNAME"
+#   ttl     = "300"
+#   records = [aws_rds_cluster.wordpress_rds_cluster.reader_endpoint]
+# }
 
-resource "aws_route53_record" "reader3_dns" {
-  zone_id = var.hosted_zone_id
-  name    = "reader3.ourproject.link"
-  type    = "CNAME"
-  ttl     = "300"
-  records = [aws_rds_cluster.wordpress_rds_cluster.reader_endpoint]
-}
+# resource "aws_route53_record" "reader3_dns" {
+#   zone_id = var.hosted_zone_id
+#   name    = "reader3.ourproject.link"
+#   type    = "CNAME"
+#   ttl     = "300"
+#   records = [aws_rds_cluster.wordpress_rds_cluster.reader_endpoint]
+# }

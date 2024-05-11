@@ -16,7 +16,7 @@ resource "aws_launch_template" "projecttemplate" {
    systemctl enable apache2
     EOF
 }
-}
+
 
 # Create auto scaling
 
@@ -25,7 +25,7 @@ resource "aws_autoscaling_group" "asg" {
 
   launch_template {
     id = aws_launch_template.projecttemplate.id
-    vesrion = "$Latest"
+    # vesrion = "$Latest"
   }
 
   min_size             = 1
