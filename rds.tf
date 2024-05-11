@@ -1,14 +1,14 @@
 # Create RDS Cluster
-resource "aws_rds_cluster" "wordpress_rds_cluster" {
-  cluster_identifier      = "wordpress-rds-cluster"
-  engine                  = "aurora-mysql"
-  engine_version          = "5.7.mysql_aurora.2.03.2"
-  availability_zones      = ["us-west-2a", "us-west-2b", "us-west-2c"]
-  database_name           = "wordpressdb"
-  master_username         = "admin"
-  master_password         = "your_master_password"  # Replace with your master password
-  backup_retention_period = 7
-  preferred_backup_window = "07:00-09:00"
+ # resource "aws_rds_cluster" "wordpress_rds_cluster" {
+  # cluster_identifier      = "wordpress-rds-cluster"
+  # engine                  = "aurora-mysql"
+  # engine_version          = "5.7.mysql_aurora.2.03.2"
+  # availability_zones      = ["us-west-2a", "us-west-2b", "us-west-2c"]
+  # database_name           = "wordpressdb"
+  # master_username         = "admin"
+  # master_password         = "your_master_password"  # Replace with your master password
+  # backup_retention_period = 7
+  # preferred_backup_window = "07:00-09:00"
 
   # Configure Writer
   writer {
