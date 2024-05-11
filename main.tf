@@ -1,8 +1,10 @@
-
+# Crete vpc
 
 resource "aws_vpc" "main" {
   cidr_block = var.vpc_cidr_block
 }
+
+# Create subnets
 
 resource "aws_subnet" "public" {
   count             = 3
@@ -17,9 +19,16 @@ resource "aws_subnet" "private" {
   cidr_block        = var.private_subnet_cidr_blocks[count.index]
 }
 
+
+# Cretae internet Gateway
+
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 }
+
+
+# Create NAT Gateways
+
 
 resource "aws_nat_gateway" "ngw" {
   count           = 3
@@ -30,6 +39,9 @@ resource "aws_nat_gateway" "ngw" {
 resource "aws_eip" "nat" {
   count = 3
 }
+
+
+# Create Route tables
 
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
