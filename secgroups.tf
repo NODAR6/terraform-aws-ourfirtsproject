@@ -1,5 +1,5 @@
 # Creating Security Group 
-resource "aws_security_group" "main" {
+resource "aws_security_group" "projectsec" {
   vpc_id = "${aws_vpc.mainvpc.id}"
 
   # Inbound Rules
