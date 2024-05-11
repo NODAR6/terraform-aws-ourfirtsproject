@@ -10,22 +10,7 @@
   # backup_retention_period = 7
   # preferred_backup_window = "07:00-09:00"
 
-  # Configure Writer
-  writer {
-    instance_type         = "db.t3.small"
-  }
 
-  # Configure Readers
-  reader {
-    instance_type         = "db.t3.small"
-  }
-  reader {
-    instance_type         = "db.t3.small"
-  }
-  reader {
-    instance_type         = "db.t3.small"
-  }
-}
 
 # Create DNS records for RDS endpoints
 resource "aws_route53_record" "writer_dns" {

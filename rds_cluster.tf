@@ -9,8 +9,8 @@ resource "aws_db_instance" "writer" {
   password             = "admin123"
   parameter_group_name = "default.mysql8.0"
   publicly_accessible   = false
-  vpc_security_group_ids = OUR !!!#change
-  db_subnet_group_name = OUR!!! #chaange
+  vpc_security_group_ids = aws_security_group.projectsec.id
+  # db_subnet_group_name = OUR!!! #chaange
   skip_final_snapshot  = true
 }
 
@@ -26,8 +26,8 @@ resource "aws_db_instance" "reader1" {
   password             = "admin123"
   parameter_group_name = "default.mysql8.0"
   publicly_accessible   = false
-  vpc_security_group_ids = OUR !!! #change
-  db_subnet_group_name = OUR!!!#change
+  vpc_security_group_ids = aws_security_group.projectsec.id
+  # db_subnet_group_name = OUR!!!#change
   skip_final_snapshot  = true
 
   read_replica_source_db_instance_identifier = aws_db_instance.writer.id
