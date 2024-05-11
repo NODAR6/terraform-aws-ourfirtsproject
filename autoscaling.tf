@@ -3,7 +3,14 @@ resource "aws_launch_template" "projecttemplate" {
   image_id      = "ami-04b70fa74e45c3917" 
   instance_type = "t2.large"   
   key_name      = "local"   
-
+   user_data = <<-EOF
+    #!/bin/bash
+   apt update
+apt install apache2 -y
+systemctl start apache2
+systemctl enable apache2
+    EOF
+}
 }
 
 
