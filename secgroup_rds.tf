@@ -2,14 +2,14 @@
 resource "aws_security_group" "projectsec" {
   name        = "Database SG"
   description = "Allow inbound traffic from application layer"
-  vpc_id      = aws_vpc.mainvpc.id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     description     = "Allow traffic from application layer"
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = [aws_security_group.projectsec.id]
+    security_groups = [aws_security_group.projectsec1.id]
   }
 
   egress {

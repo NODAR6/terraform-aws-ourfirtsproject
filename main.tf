@@ -4,6 +4,12 @@ resource "aws_vpc" "main" {
   cidr_block = var.vpc_cidr_block
 }
 
+# ________________________________________________________________________________________
+
+
+
+
+
 # Create subnets
 
 resource "aws_subnet" "public" {
@@ -11,13 +17,43 @@ resource "aws_subnet" "public" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.public_subnet_cidr_blocks[count.index]
   map_public_ip_on_launch = true
+  
 }
+
+
 
 resource "aws_subnet" "private" {
   count             = 3
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_subnet_cidr_blocks[count.index]
+  
 }
+
+
+# _________________________________________________________________________
+
+
+# Subnets group
+
+resource "aws_db_subnet_group" "subnetgroup" {
+  name       = "subnetgroup"
+  subnet_ids = concat(aws_subnet.public[*].id, aws_subnet.private[*].id)
+
+  tags = {
+    Name = "My DB subnet group"
+  }
+}
+
+
+
+
+
+
+
+
+
+#___________________________________________________________________________________________________
+
 
 
 # Cretae internet Gateway
@@ -25,6 +61,11 @@ resource "aws_subnet" "private" {
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 }
+
+
+
+# _____________________________________________________________________________________________________
+
 
 
 # Create NAT Gateways
@@ -41,9 +82,13 @@ resource "aws_eip" "nat" {
 }
 
 
+# _________________________________________________________________________________________________________________
+
+
+
 # Create Route tables
 
-resource "aws_route_table" "public" {
+resource "aws_route_table" "publicroute" {
   vpc_id = aws_vpc.main.id
 
   route {
@@ -56,20 +101,23 @@ resource "aws_route_table" "public" {
   }
 }
 
-resource "aws_route_table_association" "public" {
+
+resource "aws_route_table_association" "publicroute" {
   count          = 3
   subnet_id      = aws_subnet.public[count.index].id
-  route_table_id = aws_route_table.public.id
+  route_table_id = aws_route_table.publicroute.id
 }
+
 
 resource "aws_route_table" "private" {
   count = 3
   vpc_id = aws_vpc.main.id
 }
 
-resource "aws_route" "private" {
+resource "aws_route" "privateroute" {
   count               = 3
   route_table_id      = aws_route_table.private[count.index].id
   destination_cidr_block = "0.0.0.0/0"
    nat_gateway_id      = aws_nat_gateway.ngw[count.index].id
 }
+

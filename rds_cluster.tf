@@ -1,35 +1,41 @@
 resource "aws_db_instance" "writer" {
-  allocated_storage    = 10
-  db_name              = "writer_db"
-  engine               = "mysql"
-  engine_version       = "8.0"
-  instance_class       = "db.t3.micro"
+  allocated_storage      = 10
+  db_subnet_group_name   = aws_db_subnet_group.subnetgroup.id
+  engine                 = "mysql"
+  engine_version         = "8.0"
+  instance_class         = "db.t3.small"
+  multi_az               = true
   
-  username             = "admin"
-  password             = "admin123"
-  parameter_group_name = "default.mysql8.0"
-  publicly_accessible   = false
-  vpc_security_group_ids = aws_security_group.projectsec.id
-  # db_subnet_group_name = OUR!!! #chaange
-  skip_final_snapshot  = true
+  username               = "username"
+  password               = "password"
+  skip_final_snapshot    = true
+  vpc_security_group_ids = [aws_security_group.projectsec.id]
 }
+
+
+  # db_subnet_group_name = OUR!!! #chaange
+  
+
 
 
 resource "aws_db_instance" "reader1" {
-  allocated_storage    = 10
-  db_name              = "writer_db"
-  engine               = "mysql"
-  engine_version       = "8.0"
-  instance_class       = "db.t3.micro"
+  allocated_storage      = 10
+  db_subnet_group_name   = aws_db_subnet_group.subnetgroup.id
+  engine                 = "mysql"
+  engine_version         = "8.0"
+  instance_class         = "db.t3.small"
+  multi_az               = true
   
-  username             = "admin"
-  password             = "admin123"
-  parameter_group_name = "default.mysql8.0"
-  publicly_accessible   = false
-  vpc_security_group_ids = aws_security_group.projectsec.id
-  # db_subnet_group_name = OUR!!!#change
-  skip_final_snapshot  = true
+  username               = "username"
+  password               = "password"
+  skip_final_snapshot    = true
+  vpc_security_group_ids = [aws_security_group.projectsec.id]
 
-  read_replica_source_db_instance_identifier = aws_db_instance.writer.id
+
+  # db_subnet_group_name = OUR!!!#change
+ 
+  # read_replica_source_db_instance_identifier = aws_db_instance.writer.id
 }
+
+
 

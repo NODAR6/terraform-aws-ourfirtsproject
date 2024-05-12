@@ -1,6 +1,6 @@
 # Creating Security Group 
-resource "aws_security_group" "projectsec" {
-  vpc_id = "${aws_vpc.mainvpc.id}"
+resource "aws_security_group" "projectsec1" {
+  vpc_id = aws_vpc.main.id
 
   # Inbound Rules
   # HTTP access from anywhere
